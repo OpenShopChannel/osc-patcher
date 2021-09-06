@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<app version="1">
+	<name>Patcher [Open Shop Channel]</name>
+	<version>1.0</version>
+	<release_date>20210905203141</release_date>
+	<coder>Open Shop Channel</coder>
+	<short_description>Installs the Open Shop Channel software suite.</short_description>
+	<long_description>This is the installer/patcher software for the Open Shop Channel.
+
+This will patch your shop channel to work with the Open Shop Channel servers.
+</long_description>
+<ahb_access/>
+</app>
