@@ -10,12 +10,12 @@ _This patcher also makes use of IOS patching code provided by [Joseph Jordan](jo
 
 ---
 
-## Purpose
-
-This application installs the [forwarder channel](https://github.com/ramblecube/osc-forwarder) and patches the shop channel to work with the [shop frontend](https://github.com/openshopchannel/WSC-Web).
-
 ## Installation
 
 You should NOT install this patcher by itself- the downloader application is needed in order for the Open Shop Channel software suite to function properly.
 
 Visit https://oscwii.org for download links and installation instructions.
+
+## Purpose
+
+This application installs the [forwarder channel](https://github.com/ramblecube/osc-forwarder) and patches the shop channel to work with the [shop frontend](https://github.com/openshopchannel/WSC-Web).
