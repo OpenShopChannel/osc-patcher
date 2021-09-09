@@ -13,8 +13,8 @@
 #include <dirent.h>
 #include <ogc/lwp_watchdog.h>
 #include <ogc/machine/processor.h>
+#include <libpatcher/libpatcher.h>
 
-#include "iospatch.h"
 #include "minIni.h"
 #include "sha1.h"
 
@@ -191,8 +191,6 @@ s32 getNANDFileSHA1(char * path, char * result) {
 	SHA1Update(&sha, (uint8_t *)fileBuffer, fileSize);
 	SHA1Final(results, &sha);
 
-	int n;
-
 	sprintf(result, "%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x", results[0], results[1], results[2], results[3], results[4], results[5], results[6], results[7], results[8], results[9], results[10], results[11], results[12], results[13], results[14], results[15], results[16], results[17], results[18], results[19]);
 
 	free(fileBuffer);
@@ -262,7 +260,7 @@ s32 patchFile(char * nandpath, char * patchpath) {
 
 }
 
-int main(int argc, char **argv) {
+int main(void) {
 
 	VIDEO_Init();
 	WPAD_Init();
@@ -283,9 +281,10 @@ int main(int argc, char **argv) {
 
 	printf("[!] Patching IOS for NAND access...\n");
 
-	if (IOSPATCH_Apply() < 0) {
-		fatalError("Failed to apply IOS patches.");
-	}
+    bool success = apply_patches();
+    if (!success) {
+        fatalError("Failed to apply IOS patches.");
+    }
 
 	printf("[!] Initializing NAND access...\n");
     
@@ -304,10 +303,7 @@ int main(int argc, char **argv) {
 	printf("[!] %d tasks to complete.\n", numTasks);
 
 	s32 i;
-	s32 j;
-	s32 k;
 	char sectionName[256];
-	char keyName[64];
 	char keyValue[256];
 	for (i = 0; i < numTasks; i++) {
 		ini_getsection(i, sectionName, 256, "/apps/oscpatcher/config.ini");
